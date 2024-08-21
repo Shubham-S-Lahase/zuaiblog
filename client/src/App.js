@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/navbar/Navbar.jsx";
+import RegisterForm from "./components/register/Register.jsx";
 import "./App.css";
 
 function App() {
@@ -26,8 +27,8 @@ function App() {
       <header className="nav">
         <Navbar scrolled={scrolled} />
       </header>
-      <section className="test">
-        
+      <section className="main">
+          <RegisterForm/>
       </section>
     </div>
   );
