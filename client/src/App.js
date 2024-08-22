@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/navbar/Navbar.jsx";
 import RegisterForm from "./components/register/Register.jsx";
+import LoginForm from "./components/login/Login.jsx";
+import NewPostForm from "./components/newpost/NewPost.jsx";
 import "./App.css";
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
       </header>
       <section className="main">
           <RegisterForm/>
+          <LoginForm/>
+          <NewPostForm/>
       </section>
     </div>
   );

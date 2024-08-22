@@ -58,7 +58,7 @@ const RegisterForm = () => {
           />
         </div>
 
-        <div id="button-wrapper" className={`${styles.buttonWrapper} ${isChecked ? styles.checked : ''}`}>
+        <div id={styles.buttonwrapper} className={`${styles.buttonWrapper} ${isChecked ? styles.checked : ''}`}>
           <button type="submit" className={`${styles.registerbutton} ${styles.submit}`}>Register</button>
           <div className={styles.loaderWrapper}>
             <span className={`${styles.loader} ${styles.yellow}`}></span>

@@ -24,10 +24,18 @@ exports.getPostById = async (req, res) => {
 exports.createPost = async (req, res) => {
   const { title, content } = req.body;
   try {
+    const image = req.file;
+    let imageUrl = image.path;
+
+    if(image) {
+      imageUrl = image.path;
+    }
+
     const newPost = new Post({
       title,
       content,
       author: req.user.id,
+      imageUrl,
     });
     await newPost.save();
     res.status(201).json(newPost);
@@ -40,12 +48,22 @@ exports.updatePost = async (req, res) => {
   const { title, content } = req.body;
   try {
     const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
     if (post.author.toString() !== req.user.id) {
       return res.status(403).json({ message: 'User not authorized' });
     }
 
     post.title = title || post.title;
     post.content = content || post.content;
+
+    if(req.file) {
+      post.imageUrl = req.file.path;
+    }
+
     await post.save();
 
     res.json(post);
