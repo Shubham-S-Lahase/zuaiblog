@@ -3,6 +3,7 @@ import Navbar from "./components/navbar/Navbar.jsx";
 import RegisterForm from "./components/register/Register.jsx";
 import LoginForm from "./components/login/Login.jsx";
 import NewPostForm from "./components/newpost/NewPost.jsx";
+import PostList from "./components/posts/PostList.jsx";
 import "./App.css";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <RegisterForm/>
           <LoginForm/>
           <NewPostForm/>
+          <PostList/>
       </section>
     </div>
   );
