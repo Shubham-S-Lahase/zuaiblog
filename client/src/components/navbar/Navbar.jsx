@@ -3,6 +3,7 @@ import styles from "./Navbar.module.css";
 import Modal from "../Modal/Modal";
 import RegisterForm from "../register/Register";
 import LoginForm from "../login/Login";
+import NewPostForm from "../newpost/NewPost";
 import { useAuth } from "../../hooks/useAuth";
 
 const Navbar = ({ scrolled }) => {
@@ -10,6 +11,7 @@ const Navbar = ({ scrolled }) => {
   console.log(user);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isNewPostForm, setIsNewPostForm] = useState(false);
 
   return (
     <div
@@ -20,8 +22,8 @@ const Navbar = ({ scrolled }) => {
       </div>
       {user ? (
         <div className={styles.menus2}>
-          <span>Post something!</span>
-          <span>{user}</span>
+          <span id={styles.post} onClick={() => setIsNewPostForm(true)}>Post something!</span>
+          <span id={styles.username}>{user.username}</span>
           <img src="/logout.svg" alt="logout" onClick={logout} />
         </div>
       ) : (
@@ -37,6 +39,10 @@ const Navbar = ({ scrolled }) => {
 
       <Modal isOpen={isRegisterOpen} onClose={() => setIsRegisterOpen(false)}>
         <RegisterForm closeModal={() => setIsRegisterOpen(false)} />
+      </Modal>
+
+      <Modal isOpen={isNewPostForm} onClose={() => setIsNewPostForm(false)}>
+        <NewPostForm closeModal={() => setIsNewPostForm(false)}/>
       </Modal>
     </div>
   );

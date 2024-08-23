@@ -3,6 +3,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DOMPurify from "dompurify";
 import styles from "./NewPost.module.css";
+import { createPost } from "../../services/api";
 
 const NewPostForm = () => {
   const [title, setTitle] = useState("");
@@ -51,24 +52,15 @@ const NewPostForm = () => {
     }
 
     try {
-      const response = await fetch("/api/posts", {
-        method: "POST",
-        body: formData,
-      });
+      await createPost(formData);
 
-      const data = await response.json();
-
-      if (response.ok) {
-        toast.success("Post created successfully!");
-        setTitle("");
-        setContent("");
-        setImage(null);
-        setErrors({});
-      } else {
-        toast.error(data.message || "Failed to create post.");
-      }
+      toast.success("Post created successfully!");
+      setTitle("");
+      setContent("");
+      setImage(null);
+      setErrors({});
     } catch (err) {
-      toast.error("Something went wrong. Please try again.");
+      toast.error(err.message || "Failed to create post.");
     }
   };
 

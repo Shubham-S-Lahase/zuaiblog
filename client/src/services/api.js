@@ -8,7 +8,7 @@ API.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers["x-auth-token"] = token;
     }
     return config;
   },
@@ -22,7 +22,8 @@ export const registerUser = async (userData) => {
     const response = await API.post("/auth/register", userData);
     return response.data;
   } catch (error) {
-    if (error.response && error.response.data) {
+    if (error.response && error.response.data) 
+      {
       throw new Error(error.response.data.message);
     } else {
       throw new Error("Registration failed, please try again later.");

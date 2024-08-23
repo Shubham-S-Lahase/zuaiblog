@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar.jsx";
-import NewPostForm from "./components/newpost/NewPost.jsx";
 import PostList from "./components/posts/PostList.jsx";
 import PostDetail from "./components/posts/PostDetails.jsx";
 import "./App.css";
@@ -39,7 +38,6 @@ function App() {
             <Routes>
               <Route path="/" element={<PostList />} />
               <Route path="/post/:id" element={<PostDetail />} />
-              <Route path="/new-post" element={<NewPostForm />} />
             </Routes>
           </section>
           <ToastContainer/>
