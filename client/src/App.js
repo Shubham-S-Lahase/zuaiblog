@@ -7,9 +7,12 @@ import "./App.css";
 import { AuthProvider } from "./hooks/useAuth.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NewPostForm from "./components/newpost/NewPost.jsx";
+import Modal from "./components/Modal/Modal.jsx";
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
+  const [isNewPostForm, setIsNewPostForm] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,12 +38,22 @@ function App() {
             <Navbar scrolled={scrolled} />
           </header>
           <section className="main">
+            <span id="post" onClick={() => setIsNewPostForm(true)}>
+              Post something!
+            </span>
             <Routes>
               <Route path="/" element={<PostList />} />
               <Route path="/post/:id" element={<PostDetail />} />
             </Routes>
+
+            <Modal
+              isOpen={isNewPostForm}
+              onClose={() => setIsNewPostForm(false)}
+            >
+              <NewPostForm closeModal={() => setIsNewPostForm(false)} />
+            </Modal>
           </section>
-          <ToastContainer/>
+          <ToastContainer />
         </div>
       </AuthProvider>
     </Router>

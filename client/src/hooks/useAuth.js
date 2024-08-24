@@ -90,7 +90,7 @@ export const AuthProvider = ({ children }) => {
     navigate("/");
   };
 
-  console.log(state);
+  // console.log(state);
 
   const value = {
     ...state,

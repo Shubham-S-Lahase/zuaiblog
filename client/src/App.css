@@ -35,3 +35,23 @@ p {
   width: 100%;
   margin-top: 6rem;
 }
+
+#post {
+  cursor: pointer;
+  padding: 6px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 5px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  transition: background 0.3s ease, color 0.3s ease;
+  font-family: Alegreya Sans;
+  position: fixed;
+  right: 1%;
+  bottom: 50px;
+  width: max-content;
+}
+
+#post:hover {
+  background: #5b6170;
+  border: 1px solid #5b6170;
+  color: #ffffff;
+  box-shadow: none;
+}

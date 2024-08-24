@@ -8,7 +8,7 @@ export const usePosts = () => {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      const response = await fetch("/posts");
+      const response = await fetch("http://localhost:5000/api/posts");
       if (!response.ok) {
         throw new Error("Failed to fetch posts");
       }

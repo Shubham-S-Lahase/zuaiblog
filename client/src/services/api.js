@@ -58,10 +58,6 @@ export const createPost = async (postData) => {
   return response.data;
 };
 
-export const fetchPosts = async (page, limit) => {
-  const response = await API.get(`/posts?page=${page}&limit=${limit}`);
-  return response.data;
-};
 
 export const fetchPostById = async (id) => {
   const response = await API.get(`/posts/${id}`);
@@ -70,4 +66,56 @@ export const fetchPostById = async (id) => {
 
 export const logoutUser = () => {
   localStorage.removeItem("token");
+};
+
+
+export const fetchCommentsForPost = async (postId) => {
+  try {
+    const response = await API.get(`/posts/${postId}/comments`);
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.data) {
+      throw new Error(error.response.data.message);
+    } else {
+      throw new Error("Failed to fetch comments, please try again later.");
+    }
+  }
+};
+
+export const addComment = async (postId, commentData) => {
+  try {
+    const response = await API.post(`/posts/${postId}/comments`, commentData);
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.data) {
+      throw new Error(error.response.data.message);
+    } else {
+      throw new Error("Failed to add comment, please try again later.");
+    }
+  }
+};
+
+export const editComment = async (commentId, updatedData) => {
+  try {
+    const response = await API.put(`/comments/${commentId}`, updatedData);
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.data) {
+      throw new Error(error.response.data.message);
+    } else {
+      throw new Error("Failed to edit comment, please try again later.");
+    }
+  }
+};
+
+export const deleteComment = async (commentId) => {
+  try {
+    await API.delete(`/comments/${commentId}`);
+  } catch (error) {
+    if (error.response && error.response.data) {
+      throw new Error(error.response.data.message);
+    } else {
+      throw new Error("Failed to delete comment, please try again later.");
+    }
+  }
 };

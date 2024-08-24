@@ -9,7 +9,7 @@ const PostList = () => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  console.log(posts);
+  // console.log(posts);
 
   const handlePostClick = (postId) => {
     if (isAuthenticated) {
