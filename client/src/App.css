@@ -26,12 +26,12 @@ p {
   margin: 0;
 }
 
-.nav{
+.nav {
   width: 100%;
   height: fit-content;
 }
 
-.main{
+.main {
   width: 100%;
   margin-top: 6rem;
 }
@@ -39,19 +39,58 @@ p {
 #post {
   cursor: pointer;
   padding: 6px 12px;
-  border: 1px solid rgba(0, 0, 0, 0.25);
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 5px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  transition: background 0.3s ease, color 0.3s ease;
-  font-family: Alegreya Sans;
   position: fixed;
   right: 1%;
   bottom: 50px;
   width: max-content;
+  font-family: Alegreya Sans;
+  color: #ffffff;
+  text-shadow: 0 1px 0 #000;
+
+  border: solid 2px transparent;
+
+  --border-angle: 0turn;
+  --main-bg: conic-gradient(
+    from var(--border-angle),
+    #213,
+    #112 5%,
+    #112 60%,
+    #213 95%
+  );
+
+  --gradient-border: conic-gradient(
+    from var(--border-angle),
+    transparent 25%,
+    #08f,
+    #f03 99%,
+    transparent
+  );
+
+  background: var(--main-bg) padding-box, var(--gradient-border) border-box,
+    var(--main-bg) border-box;
+
+  background-position: center center;
+
+  transition: background 0.3s ease, color 0.3s ease;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 5px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  animation: bg-spin 3s linear infinite;
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
 }
 
 #post:hover {
-  background: #5b6170;
-  border: 1px solid #5b6170;
-  color: #ffffff;
-  box-shadow: none;
+  animation-play-state: paused;
 }

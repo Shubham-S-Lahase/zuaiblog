@@ -41,6 +41,7 @@ export const AuthProvider = ({ children }) => {
           dispatch({ type: "LOADING" });
           const user = await fetchUserData(token);
           dispatch({ type: "LOGIN_SUCCESS", payload: user });
+          console.log(user);
         } catch (err) {
           if (err.response?.status === 401) {
             localStorage.removeItem("token");
@@ -62,7 +63,7 @@ export const AuthProvider = ({ children }) => {
       dispatch({ type: "LOADING" });
       const data = await registerUser(userData);
       // console.log("register response: ", data);
-      dispatch({ type: "REGISTER_SUCCESS", payload: data.userName });
+      dispatch({ type: "REGISTER_SUCCESS", payload: data});
       localStorage.setItem("token", data.token);
       navigate("/");
       return true;
@@ -76,9 +77,12 @@ export const AuthProvider = ({ children }) => {
     try {
       dispatch({ type: "LOADING" });
       const data = await loginUser(credentials);
-      dispatch({ type: "LOGIN_SUCCESS", payload: data.userName });
+      console.log(data);
+      dispatch({ type: "LOGIN_SUCCESS", payload: data });
       localStorage.setItem("token", data.token);
       navigate("/");
+
+      dispatch({ type: "LOGIN_SUCCESS", payload: data });
     } catch (err) {
       dispatch({ type: "AUTH_ERROR", payload: err.response.data.message });
     }

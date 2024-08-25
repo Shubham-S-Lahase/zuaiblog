@@ -11,7 +11,6 @@ const Navbar = ({ scrolled }) => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
-
   return (
     <div
       className={`${styles.container} ${scrolled ? styles.containerup : ""}`}
@@ -21,7 +20,7 @@ const Navbar = ({ scrolled }) => {
       </div>
       {user ? (
         <div className={styles.menus2}>
-          <span id={styles.username}>{user.username}</span>
+          <span id={styles.username}>{user.userName}</span>
           <img src="/logout.svg" alt="logout" onClick={logout} />
         </div>
       ) : (
